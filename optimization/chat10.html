@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#8A2BE2">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Talk to Strangers! - Glassmorphism</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="content-pages.css">
+    <!-- Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script type='text/javascript' src='//pl26519744.profitableratecpm.com/48/14/da/4814da49341d0cf678490b3e0e77e1e4.js'></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4151519079019358"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        /* Glassmorphism design */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --primary-color: #8A2BE2;
+            --secondary-color: #4158D0;
+            --accent-color: #00DBDE;
+            --text-color: #fff;
+            --text-dark: #333;
+            --border-radius: 16px;
+            --blur-amount: 10px;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        body {
+            background: linear-gradient(45deg, #4158D0, #C850C0, #FFCC70);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Glass effect card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
+        }
+        
+        /* Header */
+        .header {
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Shimmering border effect */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: glowing 20s linear infinite;
+            border-radius: calc(var(--border-radius) + 2px);
+            opacity: 0.5;
+        }
+        
+        @keyframes glowing {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 400% 0%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-image {
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 2px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #c8c8c8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .online-counter {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .online-indicator {
+            width: 10px;
+            height: 10px;
+            background-color: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+            }
+        }
+        
+        .user-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            background-color: #fbbf24;
+            border-radius: 50%;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            width: 100%;
+        }
+        
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Main content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Video container */
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .main-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .control-button, .next-button {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+        }
+        
+        .control-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .next-button {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        .control-button:hover, .next-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .control-button:active, .next-button:active {
+            transform: translateY(0);
+        }
+        
+        .status-badge {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .video-screens {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .video-screens {
+                flex-direction: row;
+            }
+            
+            .video-wrapper {
+                flex: 1;
+            }
+            
+            .nav-links {
+                width: auto;
+                margin-top: 0;
+                margin-left: auto;
+            }
+        }
+        
+        .video-wrapper {
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--glass-shadow);
+        }
+        
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .video-label {
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .local-controls, .remote-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        /* Chat container */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 0;
+            min-height: 300px;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+        }
+        
+        .welcome-message {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            padding: 15px 20px;
+            border-radius: 20px;
+            border-bottom-left-radius: 5px;
+            margin-bottom: 20px;
+            max-width: 85%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chat-input {
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+        }
+        
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            border-radius: 30px;
+            padding: 5px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 12px 0;
+            color: white;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+        
+        .mobile-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .mobile-input:focus {
+            outline: none;
+        }
+        
+        .emoji-button, .mobile-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .emoji-button:hover, .mobile-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-button {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .mobile-button:hover {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scale(1.05);
+        }
+        
+        .emoji-picker {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            right: 20px;
+            max-width: 350px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 100;
+            display: none;
+        }
+        
+        .emoji-picker.show {
+            display: block;
+        }
+        
+        .emoji-categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            scrollbar-width: none;
+        }
+        
+        .emoji-categories::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .emoji-category {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .emoji-category.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .emoji-list {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 5px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+        
+        .emoji-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .emoji-list::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+        
+        /* Helpers */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header glass-card">
+            <div class="header-left">
+                <img src="images/logo-omegle.png" alt="Omegle Logo" class="logo-image">
+                <div class="logo-text">Talk to Strangers!</div>
+                <div class="user-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+            </div>
+            <div class="online-counter">
+                <span class="online-indicator"></span>
+                <span id="onlineCount">0</span> users online
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="safety.html" class="nav-link">Safety</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="privacy.html" class="nav-link">Privacy</a>
+                <a href="terms.html" class="nav-link">Terms</a>
+            </nav>
+        </header>
+        
+        <main class="main-content">
+            <section class="video-container">
+                <div class="main-controls">
+                    <button id="autoConnectBtn" class="control-button">
+                        <i class="fas fa-sync-alt"></i>
+                        Auto Connect
+                        <span class="status-badge">Off</span>
+                    </button>
+                    <button id="nextButton" class="next-button">
+                        <i class="fas fa-random"></i>
+                        Next Stranger
+                    </button>
+                </div>
+
+                <div class="video-screens">
+                    <div class="video-wrapper glass-card local">
+                        <video id="localVideo" autoplay playsinline muted></video>
+                        <div class="video-overlay">
+                            <span class="video-label">You</span>
+                            <div class="local-controls">
+                                <button id="toggleVideo" class="control-btn" aria-label="Toggle video">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                                <button id="toggleAudio" class="control-btn" aria-label="Toggle audio">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
+                                <button id="fullscreenLocal" class="control-btn" aria-label="Fullscreen">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-wrapper glass-card remote">
+                        <video id="remoteVideo" autoplay playsinline></video>
+                        <div class="video-overlay">
+                            <span class="video-label">Stranger</span>
+                            <div class="remote-controls">
+                                <button id="fullscreenRemote" class="control-btn" aria-label="Fullscreen">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="chat-container glass-card" id="chatContainer">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <p>Welcome to Omegle! Say hi to start a conversation.</p>
+                    </div>
+                </div>
+                <div class="chat-input mobile-friendly">
+                    <div class="input-wrapper">
+                        <button id="emojiButton" class="emoji-button" aria-label="Insert emoji">
+                            <i class="fas fa-smile"></i>
+                        </button>
+                        <input type="text" id="messageInput" placeholder="Type a message..." class="mobile-input">
+                        <button id="sendButton" class="mobile-button" aria-label="Send message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div id="emojiPicker" class="emoji-picker hidden">
+                        <div class="emoji-categories">
+                            <button class="emoji-category active" data-category="smileys">😊</button>
+                            <button class="emoji-category" data-category="gestures">👋</button>
+                            <button class="emoji-category" data-category="love">❤️</button>
+                            <button class="emoji-category" data-category="animals">🐶</button>
+                            <button class="emoji-category" data-category="food">🍔</button>
+                        </div>
+                        <div class="emoji-list"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer glass-card">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="safety.html">Safety</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Talk to Strangers. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+    <!-- Animation scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate online user count
+            const onlineCountElement = document.getElementById('onlineCount');
+            if (onlineCountElement) {
+                const randomUserCount = Math.floor(Math.random() * 300) + 500;
+                let count = 0;
+                const interval = setInterval(() => {
+                    count += Math.ceil(randomUserCount / 30);
+                    if (count >= randomUserCount) {
+                        count = randomUserCount;
+                        clearInterval(interval);
+                    }
+                    onlineCountElement.textContent = count.toLocaleString();
+                }, 50);
+            }
+            
+            // Handle emoji picker
+            const emojiButton = document.getElementById('emojiButton');
+            const emojiPicker = document.getElementById('emojiPicker');
+            
+            if (emojiButton && emojiPicker) {
+                emojiButton.addEventListener('click', () => {
+                    emojiPicker.classList.toggle('show');
+                });
+                
+                // Close emoji picker when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!emojiButton.contains(e.target) && !emojiPicker.contains(e.target)) {
+                        emojiPicker.classList.remove('show');
+                    }
+                });
+            }
+            
+            // Simulate message sending
+            const sendButton = document.getElementById('sendButton');
+            const messageInput = document.getElementById('messageInput');
+            const chatMessages = document.getElementById('chatMessages');
+            
+            if (sendButton && messageInput && chatMessages) {
+                const sendMessage = () => {
+                    const message = messageInput.value.trim();
+                    if (message) {
+                        const messageElement = document.createElement('div');
+                        messageElement.style.alignSelf = 'flex-end';
+                        messageElement.style.background = 'rgba(255, 255, 255, 0.2)';
+                        messageElement.style.backdropFilter = 'blur(10px)';
+                        messageElement.style.WebkitBackdropFilter = 'blur(10px)';
+                        messageElement.style.padding = '15px 20px';
+                        messageElement.style.borderRadius = '20px';
+                        messageElement.style.borderBottomRightRadius = '5px';
+                        messageElement.style.marginBottom = '15px';
+                        messageElement.style.maxWidth = '85%';
+                        messageElement.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.05)';
+                        messageElement.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                        messageElement.innerHTML = `<p>${message}</p>`;
+                        
+                        chatMessages.appendChild(messageElement);
+                        messageInput.value = '';
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }
+                };
+                
+                sendButton.addEventListener('click', sendMessage);
+                
+                messageInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+            
+            // Add hover effect to glass cards
+            const glassCards = document.querySelectorAll('.glass-card');
+            glassCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KENLW8Z2M7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KENLW8Z2M7', {
+        'cookie_flags': 'SameSite=None;Secure',
+        'cookie_domain': 'none'
+      });
+    </script>
+</body>
+</html> 

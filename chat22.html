@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#121212">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Talk to Strangers! - Street</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="content-pages.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script type='text/javascript' src='//pl26519744.profitableratecpm.com/48/14/da/4814da49341d0cf678490b3e0e77e1e4.js'></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4151519079019358"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        /* Urban/Street Art Theme */
+        :root {
+            --street-bg: #121212;
+            --street-dark: #1a1a1a;
+            --street-accent: #ff4d00;
+            --street-highlight: #00e5ff;
+            --street-yellow: #ffde03;
+            --street-purple: #9d4edd;
+            --street-text: #ffffff;
+            --street-muted: #808080;
+            --street-display: 'Permanent Marker', cursive;
+            --street-body: 'Rubik', sans-serif;
+        }
+        
+        @keyframes drip {
+            0% { height: 0; opacity: 0; }
+            20% { opacity: 1; }
+            100% { height: 50px; opacity: 0.7; }
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: var(--street-body);
+            background-color: var(--street-bg);
+            color: var(--street-text);
+            line-height: 1.6;
+            position: relative;
+            background-image: 
+                linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9)),
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzEyMTIxMiIgLz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHN0cm9rZT0iIzMzMzMzMyIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIi8+PHJlY3QgeD0iNTAiIHk9IjUwIiB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHN0cm9rZT0iIzMzMzMzMyIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIi8+PC9zdmc+');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Header */
+        .header {
+            background-color: var(--street-dark);
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            border: 2px solid #333;
+            box-shadow: 5px 5px 0px rgba(255, 77, 0, 0.5);
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--street-accent), 
+                var(--street-highlight), 
+                var(--street-yellow), 
+                var(--street-purple));
+        }
+        
+        .graffiti-drip {
+            position: absolute;
+            width: 3px;
+            height: 0;
+            background-color: var(--street-accent);
+            top: 3px;
+            animation: drip 3s ease-in forwards;
+            opacity: 0;
+        }
+        
+        .drip-1 { left: 20%; background-color: var(--street-accent); }
+        .drip-2 { left: 40%; background-color: var(--street-highlight); animation-delay: 0.5s; }
+        .drip-3 { left: 60%; background-color: var(--street-yellow); animation-delay: 1s; }
+        .drip-4 { left: 80%; background-color: var(--street-purple); animation-delay: 1.5s; }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-image {
+            height: 40px;
+            filter: brightness(1.2) contrast(1.2);
+        }
+        
+        .logo-text {
+            font-family: var(--street-display);
+            font-size: 28px;
+            color: var(--street-text);
+            letter-spacing: 1px;
+            text-shadow: 
+                3px 3px 0 var(--street-accent),
+                -1px -1px 0 var(--street-purple);
+            transform: rotate(-2deg);
+        }
+        
+        .logo-text:hover {
+            animation: glitch 0.3s ease-in-out;
+        }
+        
+        .user-status {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--street-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            background-color: var(--street-accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--street-accent);
+        }
+        
+        .online-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--street-dark);
+            color: var(--street-text);
+            padding: 8px 15px;
+            border: 2px solid #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: rotate(2deg);
+            box-shadow: 3px 3px 0px rgba(0, 229, 255, 0.5);
+        }
+        
+        .online-counter i {
+            color: var(--street-highlight);
+        }
+        
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-link {
+            color: var(--street-text);
+            text-decoration: none;
+            padding: 8px 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .nav-link::before {
+            content: "";
+            position: absolute;
+            bottom: 5px;
+            left: 15px;
+            right: 15px;
+            height: 2px;
+            background-color: var(--street-highlight);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 5px var(--street-highlight);
+        }
+        
+        .nav-link:hover::before, .nav-link.active::before {
+            transform: scaleX(1);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--street-highlight);
+        }
+        
+        /* Main content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Video container */
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .main-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .control-button, .next-button {
+            background-color: var(--street-dark);
+            color: var(--street-text);
+            border: 2px solid #333;
+            padding: 12px 25px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 3px 3px 0px rgba(157, 78, 221, 0.5);
+        }
+        
+        .control-button:hover, .next-button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px rgba(157, 78, 221, 0.7);
+        }
+        
+        .next-button {
+            background-color: var(--street-accent);
+            color: var(--street-text);
+            box-shadow: 3px 3px 0px rgba(255, 222, 3, 0.5);
+        }
+        
+        .next-button:hover {
+            box-shadow: 5px 5px 0px rgba(255, 222, 3, 0.7);
+        }
+        
+        .status-badge {
+            background-color: #333;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-size: 12px;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            border: 2px solid #333;
+            background-color: var(--street-dark);
+            box-shadow: 5px 5px 0px rgba(0, 229, 255, 0.5);
+        }
+        
+        .video-wrapper.local {
+            border-color: var(--street-highlight);
+        }
+        
+        .video-wrapper.remote {
+            border-color: var(--street-accent);
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(to bottom, 
+                rgba(18, 18, 18, 0.7), 
+                transparent 30%, 
+                transparent 70%, 
+                rgba(18, 18, 18, 0.7));
+        }
+        
+        .video-label {
+            background-color: var(--street-dark);
+            color: var(--street-text);
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #333;
+            align-self: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .video-wrapper.local .video-label {
+            border-color: var(--street-highlight);
+            color: var(--street-highlight);
+        }
+        
+        .video-wrapper.remote .video-label {
+            border-color: var(--street-accent);
+            color: var(--street-accent);
+        }
+        
+        .local-controls, .remote-controls {
+            display: flex;
+            gap: 10px;
+            align-self: flex-end;
+        }
+        
+        .control-btn {
+            background-color: var(--street-dark);
+            color: var(--street-text);
+            border: 2px solid #333;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 3px 3px 0px rgba(0, 229, 255, 0.5);
+        }
+        
+        /* Chat container */
+        .chat-container {
+            margin-top: 20px;
+        }
+        
+        .chat-ad-container {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            min-height: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            background-color: var(--street-dark);
+            position: relative;
+            border: 2px solid #333;
+            box-shadow: 5px 5px 0px rgba(255, 77, 0, 0.5);
+        }
+        
+        .welcome-message {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--street-highlight);
+            font-weight: 500;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #333;
+        }
+        
+        .chat-input {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: var(--street-dark);
+            border: 2px solid #333;
+            box-shadow: 5px 5px 0px rgba(255, 222, 3, 0.5);
+        }
+        
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .emoji-button {
+            background-color: transparent;
+            color: var(--street-muted);
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .emoji-button:hover {
+            color: var(--street-yellow);
+        }
+        
+        .mobile-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #333;
+            background-color: rgba(26, 26, 26, 0.8);
+            color: var(--street-text);
+            font-family: var(--street-body);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-input:focus {
+            outline: none;
+            border-color: var(--street-highlight);
+        }
+        
+        .mobile-button {
+            background-color: var(--street-accent);
+            color: var(--street-text);
+            border: 2px solid #333;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 3px 3px 0px rgba(255, 222, 3, 0.5);
+        }
+        
+        /* Emoji picker */
+        .emoji-picker {
+            margin-top: 10px;
+            background-color: var(--street-dark);
+            border: 2px solid #333;
+            padding: 10px;
+            box-shadow: 5px 5px 0px rgba(157, 78, 221, 0.5);
+        }
+        
+        .emoji-categories {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #333;
+        }
+        
+        .emoji-category {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .emoji-category:hover, .emoji-category.active {
+            background-color: rgba(157, 78, 221, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .emoji-list {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 5px;
+        }
+        
+        /* Ad sidebar */
+        .ad-sidebar {
+            width: 300px;
+        }
+        
+        .ad-wrapper {
+            height: 100%;
+            background-color: var(--street-dark);
+            border: 2px solid #333;
+            box-shadow: 5px 5px 0px rgba(0, 229, 255, 0.5);
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: var(--street-dark);
+            border: 2px solid #333;
+            position: relative;
+            box-shadow: 5px 5px 0px rgba(157, 78, 221, 0.5);
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--street-accent), 
+                var(--street-highlight), 
+                var(--street-yellow), 
+                var(--street-purple));
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--street-text);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--street-accent);
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .chat-ad-container {
+                flex-direction: column;
+            }
+            
+            .ad-sidebar {
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .logo-text {
+                font-size: 24px;
+            }
+            
+            .graffiti-drip {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-left {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .online-counter {
+                position: static;
+                margin-top: 15px;
+                width: fit-content;
+            }
+            
+            .main-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .control-button, .next-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mobile-optimized">
+        <div class="header">
+            <div class="graffiti-drip drip-1"></div>
+            <div class="graffiti-drip drip-2"></div>
+            <div class="graffiti-drip drip-3"></div>
+            <div class="graffiti-drip drip-4"></div>
+            
+            <div class="header-left">
+                <img src="images/logo-omegle.png" alt="Omegle Logo" class="logo-image">
+                <div class="logo-text">Talk to Strangers!</div>
+                <div class="user-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+            </div>
+            <div class="online-counter">
+                <i class="fas fa-circle"></i>
+                <span id="onlineCount">0</span> crew online
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="safety.html" class="nav-link">Safety</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="privacy.html" class="nav-link">Privacy</a>
+                <a href="terms.html" class="nav-link">Terms</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="video-container">
+                <div class="main-controls">
+                    <button id="autoConnectBtn" class="control-button">
+                        <i class="fas fa-sync"></i> Auto Connect
+                        <span class="status-badge">Off</span>
+                    </button>
+                    <button id="nextButton" class="next-button">
+                        <i class="fas fa-random"></i> Next Stranger
+                    </button>
+                </div>
+
+                <div class="video-wrapper local">
+                    <video id="localVideo" autoplay playsinline muted></video>
+                    <div class="video-overlay">
+                        <span class="video-label">You</span>
+                        <div class="local-controls">
+                            <button id="toggleVideo" class="control-btn">
+                                <i class="fas fa-video"></i>
+                            </button>
+                            <button id="toggleAudio" class="control-btn">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button id="fullscreenLocal" class="control-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-wrapper remote">
+                    <video id="remoteVideo" autoplay playsinline></video>
+                    <div class="video-overlay">
+                        <span class="video-label">Stranger</span>
+                        <div class="remote-controls">
+                            <button id="fullscreenRemote" class="control-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-ad-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="welcome-message">
+                            <i class="fas fa-spray-can"></i>
+                            <p>Welcome to the chat! Express yourself and connect with others.</p>
+                        </div>
+                    </div>
+                    <div class="ad-sidebar">
+                        <div class="ad-wrapper">
+                            <!-- Ad content here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input mobile-friendly">
+                    <div class="input-wrapper">
+                        <button id="emojiButton" class="emoji-button">
+                            <i class="fas fa-smile"></i>
+                        </button>
+                        <input type="text" id="messageInput" placeholder="Type your message..." class="mobile-input">
+                        <button id="sendButton" class="mobile-button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div id="emojiPicker" class="emoji-picker hidden">
+                        <div class="emoji-categories">
+                            <button class="emoji-category active" data-category="smileys">😊</button>
+                            <button class="emoji-category" data-category="gestures">👋</button>
+                            <button class="emoji-category" data-category="love">❤️</button>
+                            <button class="emoji-category" data-category="animals">🐶</button>
+                            <button class="emoji-category" data-category="food">🍔</button>
+                        </div>
+                        <div class="emoji-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="safety.html">Safety</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">Blog</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

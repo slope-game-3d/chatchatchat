@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0b032d">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Talk to Strangers! - Vaporwave</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="content-pages.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script type='text/javascript' src='//pl26519744.profitableratecpm.com/48/14/da/4814da49341d0cf678490b3e0e77e1e4.js'></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4151519079019358"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        /* Vaporwave/Synthwave Theme */
+        :root {
+            --vapor-bg: #0b032d;
+            --vapor-purple: #5d2e8c;
+            --vapor-pink: #fb5bc3;
+            --vapor-blue: #00ffee;
+            --vapor-yellow: #fcf340;
+            --vapor-teal: #00f9df;
+            --vapor-text: #ffffff;
+            --vapor-font: 'VT323', monospace;
+            --vapor-heading: 'Press Start 2P', cursive;
+            --vapor-grid: linear-gradient(to bottom, rgba(43, 2, 75, 0.7) 1px, transparent 1px),
+                          linear-gradient(to right, rgba(43, 2, 75, 0.7) 1px, transparent 1px);
+        }
+        
+        @keyframes neonGlow {
+            0%, 100% {
+                text-shadow: 0 0 7px var(--vapor-blue), 0 0 10px var(--vapor-blue), 0 0 21px var(--vapor-blue);
+            }
+            50% {
+                text-shadow: 0 0 5px var(--vapor-blue), 0 0 7px var(--vapor-blue), 0 0 15px var(--vapor-blue);
+            }
+        }
+        
+        @keyframes pinkGlow {
+            0%, 100% {
+                text-shadow: 0 0 7px var(--vapor-pink), 0 0 10px var(--vapor-pink), 0 0 21px var(--vapor-pink);
+            }
+            50% {
+                text-shadow: 0 0 5px var(--vapor-pink), 0 0 7px var(--vapor-pink), 0 0 15px var(--vapor-pink);
+            }
+        }
+        
+        @keyframes retroScan {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes sunsetGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: var(--vapor-font);
+            background-color: var(--vapor-bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(91, 46, 140, 0.3) 0%, rgba(158, 39, 176, 0.1) 100%),
+                var(--vapor-grid);
+            background-size: 50px 50px, 50px 50px;
+            color: var(--vapor-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            animation: fadeInUp 0.8s ease;
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Header */
+        .header {
+            position: relative;
+            background: linear-gradient(180deg, rgba(11, 3, 45, 1) 0%, rgba(54, 0, 90, 0.8) 100%);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            border-top: 2px solid var(--vapor-blue);
+            border-bottom: 2px solid var(--vapor-pink);
+            box-shadow: 0 0 20px rgba(0, 255, 238, 0.3);
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            top: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--vapor-pink), var(--vapor-blue), var(--vapor-yellow));
+            background-size: 200% 200%;
+            animation: sunsetGradient 5s ease infinite;
+            z-index: 1;
+        }
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            left: 0;
+            top: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            filter: blur(1px);
+            animation: retroScan 3s linear infinite;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-image {
+            height: 50px;
+            filter: drop-shadow(0 0 5px var(--vapor-blue));
+        }
+        
+        .logo-text {
+            font-family: var(--vapor-heading);
+            font-size: 20px;
+            color: var(--vapor-text);
+            animation: neonGlow 2s ease-in-out infinite;
+            text-transform: uppercase;
+        }
+        
+        .user-status {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--vapor-teal);
+            text-shadow: 0 0 5px var(--vapor-teal);
+            font-size: 18px;
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            background-color: var(--vapor-teal);
+            border-radius: 50%;
+            box-shadow: 0 0 5px var(--vapor-teal), 0 0 10px var(--vapor-teal);
+            animation: neonGlow 1.5s ease-in-out infinite alternate;
+        }
+        
+        .online-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--vapor-yellow);
+            text-shadow: 0 0 5px var(--vapor-yellow);
+            padding: 5px 15px;
+            border: 1px solid var(--vapor-yellow);
+            border-radius: 4px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 10px rgba(252, 243, 64, 0.3);
+            z-index: 2;
+        }
+        
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nav-link {
+            color: var(--vapor-text);
+            text-decoration: none;
+            background-color: rgba(11, 3, 45, 0.7);
+            padding: 8px 15px;
+            border: 1px solid;
+            border-image: linear-gradient(45deg, var(--vapor-pink), var(--vapor-blue)) 1;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent
+            );
+            transition: all 0.5s ease;
+        }
+        
+        .nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            box-shadow: 0 0 10px var(--vapor-blue);
+            text-shadow: 0 0 5px var(--vapor-blue);
+        }
+        
+        /* Main content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Section styles */
+        .section-heading {
+            font-family: var(--vapor-heading);
+            font-size: 24px;
+            color: var(--vapor-pink);
+            text-shadow: 0 0 7px var(--vapor-pink), 0 0 10px var(--vapor-pink);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            animation: pinkGlow 2s ease-in-out infinite;
+            text-align: center;
+        }
+        
+        /* Video container */
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .main-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .control-button, .next-button {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--vapor-teal);
+            border: 1px solid var(--vapor-teal);
+            padding: 10px 20px;
+            font-family: var(--vapor-font);
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 5px var(--vapor-teal);
+        }
+        
+        .control-button::before, .next-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 255, 238, 0.3), 
+                transparent
+            );
+            transition: all 0.5s ease;
+        }
+        
+        .control-button:hover::before, .next-button:hover::before {
+            left: 100%;
+        }
+        
+        .control-button:hover, .next-button:hover {
+            text-shadow: 0 0 5px var(--vapor-teal), 0 0 10px var(--vapor-teal);
+            box-shadow: 0 0 10px var(--vapor-teal), 0 0 20px var(--vapor-teal);
+        }
+        
+        .next-button {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--vapor-pink);
+            border: 1px solid var(--vapor-pink);
+            box-shadow: 0 0 5px var(--vapor-pink);
+        }
+        
+        .next-button:hover {
+            text-shadow: 0 0 5px var(--vapor-pink), 0 0 10px var(--vapor-pink);
+            box-shadow: 0 0 10px var(--vapor-pink), 0 0 20px var(--vapor-pink);
+        }
+        
+        .next-button::before {
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(251, 91, 195, 0.3), 
+                transparent
+            );
+        }
+        
+        .status-badge {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--vapor-text);
+            font-size: 14px;
+            padding: 2px 8px;
+            border: 1px solid var(--vapor-blue);
+            box-shadow: 0 0 5px var(--vapor-blue);
+        }
+        
+        .video-screens {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .video-screens {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .video-wrapper {
+            position: relative;
+            background-color: var(--vapor-bg);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, var(--vapor-blue), var(--vapor-pink)) 1;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 238, 0.2);
+            aspect-ratio: 16 / 9;
+        }
+        
+        .video-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--vapor-blue), var(--vapor-pink));
+            background-size: 200% 200%;
+            animation: sunsetGradient 5s ease infinite;
+            z-index: 3;
+        }
+        
+        .video-wrapper::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--vapor-pink), var(--vapor-blue));
+            background-size: 200% 200%;
+            animation: sunsetGradient 5s ease infinite reverse;
+            z-index: 3;
+        }
+        
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(11, 3, 45, 0.9), transparent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+        
+        .video-label {
+            color: var(--vapor-text);
+            font-size: 18px;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px var(--vapor-blue);
+        }
+        
+        .local-controls, .remote-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .control-btn {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid currentColor;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .video-wrapper.local .control-btn {
+            color: var(--vapor-blue);
+            box-shadow: 0 0 5px var(--vapor-blue);
+        }
+        
+        .video-wrapper.remote .control-btn {
+            color: var(--vapor-pink);
+            box-shadow: 0 0 5px var(--vapor-pink);
+        }
+        
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .video-wrapper.local .control-btn:hover {
+            box-shadow: 0 0 10px var(--vapor-blue), 0 0 20px var(--vapor-blue);
+        }
+        
+        .video-wrapper.remote .control-btn:hover {
+            box-shadow: 0 0 10px var(--vapor-pink), 0 0 20px var(--vapor-pink);
+        }
+        
+        /* Chat container */
+        .chat-container {
+            background-color: rgba(11, 3, 45, 0.7);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, var(--vapor-blue), var(--vapor-pink)) 1;
+            box-shadow: 0 0 15px rgba(0, 255, 238, 0.2);
+            display: flex;
+            flex-direction: column;
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .chat-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--vapor-blue), var(--vapor-pink));
+            background-size: 200% 200%;
+            animation: sunsetGradient 5s ease infinite;
+            z-index: 3;
+        }
+        
+        .chat-container::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--vapor-pink), var(--vapor-blue));
+            background-size: 200% 200%;
+            animation: sunsetGradient 5s ease infinite reverse;
+            z-index: 3;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-image: var(--vapor-grid);
+            background-size: 20px 20px;
+            position: relative;
+            font-size: 18px;
+        }
+        
+        .chat-messages::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(11, 3, 45, 0.7) 0%, rgba(11, 3, 45, 0.3) 100%);
+            pointer-events: none;
+        }
+        
+        .welcome-message {
+            background-color: rgba(93, 46, 140, 0.5);
+            color: var(--vapor-text);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            max-width: 80%;
+            border-left: 3px solid var(--vapor-teal);
+            box-shadow: 0 0 10px rgba(0, 255, 238, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .chat-input {
+            padding: 15px 20px;
+            background-color: rgba(11, 3, 45, 0.9);
+            border-top: 1px solid var(--vapor-purple);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--vapor-teal);
+            box-shadow: 0 0 5px var(--vapor-teal);
+            padding: 8px 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .input-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 255, 238, 0.1), 
+                transparent
+            );
+            animation: retroScan 2s linear infinite;
+        }
+        
+        .mobile-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 5px 0;
+            font-family: var(--vapor-font);
+            font-size: 18px;
+            color: var(--vapor-text);
+        }
+        
+        .mobile-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .mobile-input:focus {
+            outline: none;
+        }
+        
+        .emoji-button, .mobile-button {
+            background: none;
+            border: none;
+            color: var(--vapor-blue);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px var(--vapor-blue);
+        }
+        
+        .emoji-button:hover, .mobile-button:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 10px var(--vapor-blue), 0 0 20px var(--vapor-blue);
+        }
+        
+        .emoji-picker {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            width: 300px;
+            background-color: rgba(11, 3, 45, 0.95);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, var(--vapor-blue), var(--vapor-pink)) 1;
+            box-shadow: 0 0 15px rgba(0, 255, 238, 0.3);
+            padding: 15px;
+            z-index: 100;
+        }
+        
+        .emoji-categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--vapor-purple);
+        }
+        
+        .emoji-category {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--vapor-blue);
+            box-shadow: 0 0 5px var(--vapor-blue);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .emoji-category.active, .emoji-category:hover {
+            background-color: rgba(0, 255, 238, 0.2);
+            box-shadow: 0 0 10px var(--vapor-blue), 0 0 20px var(--vapor-blue);
+        }
+        
+        .emoji-list {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            background-color: rgba(11, 3, 45, 0.8);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--vapor-blue), var(--vapor-pink), var(--vapor-yellow));
+            background-size: 200% 200%;
+            animation: sunsetGradient 5s ease infinite;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--vapor-text);
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 3px var(--vapor-blue);
+        }
+        
+        .footer-links a:hover {
+            color: var(--vapor-blue);
+            text-shadow: 0 0 5px var(--vapor-blue), 0 0 10px var(--vapor-blue);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Retro sun */
+        .retro-sun {
+            position: fixed;
+            bottom: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(to top, var(--vapor-pink), var(--vapor-yellow));
+            border-radius: 50%;
+            box-shadow: 0 0 30px var(--vapor-pink), 0 0 60px var(--vapor-pink);
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--vapor-grid);
+            background-size: 30px 30px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        /* Scan line effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 9;
+            opacity: 0.1;
+        }
+        
+        .scanlines::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 0, 0, 0.5) 51%
+            );
+            background-size: 100% 4px;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="retro-sun"></div>
+    <div class="grid-overlay"></div>
+    <div class="scanlines"></div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                <img src="images/logo-omegle.png" alt="Omegle Logo" class="logo-image">
+                <div class="logo-text">Talk to Strangers!</div>
+                <div class="user-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">CONNECTING...</span>
+                </div>
+            </div>
+            <div class="online-counter">
+                <i class="fas fa-users"></i>
+                <span id="onlineCount">0</span> ONLINE
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="safety.html" class="nav-link">Safety</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </nav>
+        </header>
+        
+        <main class="main-content">
+            <h2 class="section-heading">Video Connection</h2>
+            
+            <section class="video-container">
+                <div class="main-controls">
+                    <button id="autoConnectBtn" class="control-button">
+                        <i class="fas fa-sync-alt"></i> Auto Connect
+                        <span class="status-badge">OFF</span>
+                    </button>
+                    <button id="nextButton" class="next-button">
+                        <i class="fas fa-random"></i> Next Stranger
+                    </button>
+                </div>
+
+                <div class="video-screens">
+                    <div class="video-wrapper local">
+                        <video id="localVideo" autoplay playsinline muted></video>
+                        <div class="video-overlay">
+                            <span class="video-label">YOU</span>
+                            <div class="local-controls">
+                                <button id="toggleVideo" class="control-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                                <button id="toggleAudio" class="control-btn">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
+                                <button id="fullscreenLocal" class="control-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-wrapper remote">
+                        <video id="remoteVideo" autoplay playsinline></video>
+                        <div class="video-overlay">
+                            <span class="video-label">STRANGER</span>
+                            <div class="remote-controls">
+                                <button id="fullscreenRemote" class="control-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <h2 class="section-heading">Text Chat</h2>
+            
+            <section class="chat-container" id="chatContainer">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <p>WELCOME TO THE RETRO FUTURE. BEGIN YOUR CONVERSATION.</p>
+                    </div>
+                </div>
+                <div class="chat-input mobile-friendly">
+                    <div class="input-wrapper">
+                        <button id="emojiButton" class="emoji-button">
+                            <i class="fas fa-smile"></i>
+                        </button>
+                        <input type="text" id="messageInput" placeholder="TYPE YOUR MESSAGE..." class="mobile-input">
+                        <button id="sendButton" class="mobile-button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div id="emojiPicker" class="emoji-picker hidden">
+                        <div class="emoji-categories">
+                            <button class="emoji-category active" data-category="smileys">😊</button>
+                            <button class="emoji-category" data-category="gestures">👋</button>
+                            <button class="emoji-category" data-category="love">❤️</button>
+                            <button class="emoji-category" data-category="animals">🐶</button>
+                            <button class="emoji-category" data-category="food">🍔</button>
+                        </div>
+                        <div class="emoji-list"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="safety.html">Safety</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 TALK TO STRANGERS. ALL RIGHTS RESERVED.
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+    <!-- Vaporwave theme script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate online user count with retro digital effect
+            const onlineCountElement = document.getElementById('onlineCount');
+            if (onlineCountElement) {
+                const randomUserCount = Math.floor(Math.random() * 300) + 500;
+                let count = 0;
+                const interval = setInterval(() => {
+                    count += Math.floor(Math.random() * 30) + 10;
+                    if (count >= randomUserCount) {
+                        count = randomUserCount;
+                        clearInterval(interval);
+                    }
+                    onlineCountElement.textContent = count.toLocaleString();
+                }, 100);
+            }
+        });
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KENLW8Z2M7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KENLW8Z2M7', {
+        'cookie_flags': 'SameSite=None;Secure',
+        'cookie_domain': 'none'
+      });
+    </script>
+</body>
+</html> 

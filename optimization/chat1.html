@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0084ff">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Talk to Strangers!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="content-pages.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script type='text/javascript' src='//pl26519744.profitableratecpm.com/48/14/da/4814da49341d0cf678490b3e0e77e1e4.js'></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4151519079019358"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        /* Modern minimalist design overrides */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            padding: 15px 20px;
+        }
+        
+        .video-wrapper {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .control-btn, .next-button, .control-button {
+            border-radius: 50px;
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover, .next-button:hover, .control-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .chat-messages {
+            border-radius: var(--border-radius);
+            background-color: white;
+        }
+        
+        .chat-input {
+            border-radius: var(--border-radius);
+            background-color: white;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            color: white;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mobile-optimized">
+        <div class="header">
+            <div class="header-left">
+                <img src="images/logo-omegle.png" alt="Omegle Logo" class="logo-image">
+                <div class="logo-text">Talk to Strangers!</div>
+                <div class="user-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+            </div>
+            <div class="online-counter">
+                <i class="fas fa-circle" style="color: #4CAF50"></i>
+                <span id="onlineCount">0</span> users online
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="safety.html" class="nav-link">Safety</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="video-container">
+                <div class="main-controls">
+                    <button id="autoConnectBtn" class="control-button">
+                        <i class="fas fa-sync"></i> Auto Connect
+                        <span class="status-badge">Off</span>
+                    </button>
+                    <button id="nextButton" class="next-button">
+                        <i class="fas fa-random"></i> Next Stranger
+                    </button>
+                </div>
+
+                <div class="video-wrapper local">
+                    <video id="localVideo" autoplay playsinline muted></video>
+                    <div class="video-overlay">
+                        <span class="video-label">You</span>
+                        <div class="local-controls">
+                            <button id="toggleVideo" class="control-btn">
+                                <i class="fas fa-video"></i>
+                            </button>
+                            <button id="toggleAudio" class="control-btn">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button id="fullscreenLocal" class="control-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-wrapper remote">
+                    <video id="remoteVideo" autoplay playsinline></video>
+                    <div class="video-overlay">
+                        <span class="video-label">Stranger</span>
+                        <div class="remote-controls">
+                            <button id="fullscreenRemote" class="control-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-ad-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="welcome-message">
+                            <i class="fas fa-hand-wave"></i>
+                            <p>Welcome to Omegle!</p>
+                        </div>
+                    </div>
+                    <div class="ad-sidebar">
+                        <div class="ad-wrapper">
+                            <!-- Ad content here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input mobile-friendly">
+                    <div class="input-wrapper">
+                        <button id="emojiButton" class="emoji-button">
+                            <i class="fas fa-smile"></i>
+                        </button>
+                        <input type="text" id="messageInput" placeholder="Type a message..." class="mobile-input">
+                        <button id="sendButton" class="mobile-button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div id="emojiPicker" class="emoji-picker hidden">
+                        <div class="emoji-categories">
+                            <button class="emoji-category active" data-category="smileys">😊</button>
+                            <button class="emoji-category" data-category="gestures">👋</button>
+                            <button class="emoji-category" data-category="love">❤️</button>
+                            <button class="emoji-category" data-category="animals">🐶</button>
+                            <button class="emoji-category" data-category="food">🍔</button>
+                        </div>
+                        <div class="emoji-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="safety.html">Safety</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Talk to Strangers. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KENLW8Z2M7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KENLW8Z2M7', {
+        'cookie_flags': 'SameSite=None;Secure',
+        'cookie_domain': 'none'
+      });
+    </script>
+</body>
+</html> 

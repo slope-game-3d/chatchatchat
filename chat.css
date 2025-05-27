@@ -1,0 +1,990 @@
+:root {
+    --primary-color: #3ca8ff;
+    --primary-hover: #2b96eb;
+    --primary-light: rgba(60, 168, 255, 0.1);
+    --background-color: #f0f2f5;
+    --text-color: #333;
+    --light-text: #666;
+    --border-radius: 10px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+/* Reset và layout cơ bản */  
+* {  
+    margin: 0;  
+    padding: 0;  
+    box-sizing: border-box;  
+}  
+
+html, body {  
+    height: 100%;  
+    width: 100%;  
+    overflow-y: auto;
+    position: relative;
+    overscroll-behavior-y: none;
+}  
+
+/* Container chính */  
+.container.mobile-optimized {  
+    height: 100%;
+    width: 100%;
+    display: flex;  
+    flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}  
+
+/* Header */  
+.header {  
+    flex-shrink: 0;  
+    z-index: 100;  
+    background: white;  
+    padding: 10px;  
+    box-shadow: var(--box-shadow);  
+}  
+
+/* Main content */  
+.main-content {  
+    flex: 1;  
+    display: flex;  
+    flex-direction: column;  
+    overflow: hidden;  
+    min-height: 0; /* Quan trọng cho flexbox scroll */  
+}  
+
+/* Video container */  
+.video-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* Style cho main controls */
+.main-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transform: none;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+    transform: scale(0.8);
+    transform-origin: right top;
+    align-items: center;
+}
+
+.control-button, .next-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.control-button:hover, .next-button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Style cho video wrappers */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.4) 100%);
+}
+
+/* Style cho local controls */
+.local-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Style cho remote controls */
+.remote-controls {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.control-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.control-btn.disabled {
+    background: rgba(255, 0, 0, 0.6);
+}
+
+/* Style cho video labels */
+.video-label {
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    align-self: flex-start;
+}
+
+/* Chat container */  
+.chat-container {  
+    flex: 1;  
+    display: flex;  
+    flex-direction: column;  
+    overflow: hidden;  
+    min-height: 0; /* Quan trọng cho flexbox scroll */  
+    background: white;  
+}  
+
+/* Chat messages - phần có thể scroll */  
+.chat-messages {  
+    flex: 1;  
+    overflow-y: auto;  
+    -webkit-overflow-scrolling: touch;  
+    padding: 10px;  
+    scroll-behavior: smooth;
+    min-height: 200px;
+    max-height: calc(100vh - 180px); /* Điều chỉnh chiều cao tối đa */
+    overscroll-behavior: contain; /* Ngăn scroll bounce trên iOS */
+    touch-action: pan-y; /* Cho phép scroll dọc trên mobile */
+}  
+
+/* Chat input area */  
+.chat-input.mobile-friendly {  
+    flex-shrink: 0;  
+    padding: 10px;  
+    background: white;  
+    border-top: 1px solid var(--primary-light);  
+}  
+
+/* iOS safe area support */  
+@supports (padding: max(0px)) {  
+    .header {  
+        padding-top: max(10px, env(safe-area-inset-top));  
+    }  
+    
+    .chat-input.mobile-friendly {  
+        padding-bottom: max(10px, env(safe-area-inset-bottom));  
+    }  
+}  
+
+/* Cập nhật media queries hiện có */  
+@media (max-width: 768px) {  
+    .chat-messages {  
+        padding: 8px;  
+    }  
+    
+    .chat-input.mobile-friendly {  
+        padding: 8px;  
+    }  
+    
+    .input-wrapper {  
+        margin-bottom: 8px;  
+    }  
+    
+    #messageInput {  
+        height: 40px;  
+        font-size: 16px; /* Prevent zoom on iOS */  
+    }  
+    
+    .chat-controls.mobile-controls {  
+        flex-wrap: wrap;  
+        gap: 8px;  
+    }  
+
+    .header {
+        display: none;
+    }
+
+    /* Điều chỉnh main-content để chiếm toàn bộ không gian */
+    .main-content {
+        height: auto;
+        min-height: calc(100vh - 50px);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .main-controls {
+        transform: scale(0.75);
+        gap: 6px;
+    }
+
+    .control-button, .next-button {
+        padding: 6px 10px;
+        font-size: 0.85em;
+        height: 36px;
+    }
+
+    .control-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .video-container {
+        flex-direction: column;
+        gap: 5px;
+        height: auto;
+        max-height: 50vh; /* Giới hạn chiều cao video container */
+    }
+
+    .video-wrapper {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+
+    .video-wrapper.remote {
+        margin-top: 5px;
+    }
+
+    /* Đảm bảo video hiển thị đúng */
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .chat-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        min-height: 60vh;
+    }
+
+    .chat-messages {
+        flex: 1;
+        height: auto;
+        min-height: 300px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+    }
+
+    /* Đảm bảo container chính có thể scroll */
+    .container.mobile-optimized {
+        height: 100vh;
+        max-height: -webkit-fill-available; /* Cho iOS */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .chat-input.mobile-friendly {
+        position: sticky;
+        bottom: 0;
+        padding: 10px;
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+        background: white;
+        border-top: 1px solid var(--primary-light);
+    }
+
+    /* Đảm bảo input luôn ở dưới cùng */
+    .chat-input.mobile-friendly {
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        background: white;
+        z-index: 1000;
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+
+    /* Đảm bảo nội dung không bị che khuất bởi bàn phím ảo */
+    body.keyboard-open .main-content {
+        height: calc(100vh - 50px - var(--keyboard-height, 0px));
+    }
+
+    /* Đảm bảo cho màn hình thấp */
+    @media (max-height: 600px) {
+        .video-container {
+            max-height: 40vh;
+        }
+        .chat-messages {
+            max-height: 45vh;
+        }
+    }
+}
+
+/* Button styles */
+.next-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.1em;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.next-button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(60, 168, 255, 0.3);
+}
+
+.next-button i {
+    font-size: 1.2em;
+}
+
+.next-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Control buttons */
+.control-button {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 15px;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.control-button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.control-button i {
+    font-size: 1.2em;
+}
+
+/* Stop button */
+.stop-button {
+    background: #ff4d4d;
+}
+
+.stop-button:hover {
+    background: #ff3333;
+}
+
+/* Send button styles */
+#sendButton {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    min-width: 45px;
+    height: 40px;
+}
+
+#sendButton i {
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+#sendButton:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* Input wrapper styles */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+    background: white;
+    border-radius: 20px;
+    border: 2px solid var(--primary-light);
+    margin-bottom: 10px;
+}
+
+#messageInput {
+    flex: 1;
+    padding: 10px 15px;
+    border: 2px solid var(--primary-light);
+    border-radius: 15px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+#messageInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* Loading states */
+.loading-spinner {
+    color: var(--primary-color);
+}
+
+/* Message bubbles */
+.message {
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 80%;
+    margin: 8px 0;
+}
+
+.message.sent {
+    background: var(--primary-color);
+    color: white;
+    margin-left: auto;
+}
+
+.message.received {
+    background: #f0f2f5;
+    color: var(--text-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .next-button {
+        padding: 12px;
+        font-size: 1em;
+    }
+
+    .control-button, #sendButton {
+        padding: 8px 12px;
+        min-width: 40px;
+        height: 36px;
+    }
+}
+
+/* Thêm vào file chat.css */
+.video-container.fullscreen .video-wrapper.local {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 150px;
+    height: 100px;
+    z-index: 1001;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.video-container.fullscreen .video-wrapper.remote {
+    width: 100%;
+    height: 100%;
+}
+
+/* Styles cho video controls */
+.video-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 1002;
+}
+
+.control-btn {
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+/* Desktop styles (màn hình > 768px) */
+@media (min-width: 768px) {
+    .video-container {
+        flex-direction: row;
+        height: 50vh;
+    }
+
+    .video-wrapper {
+        flex: 1;
+        width: 50%;
+    }
+
+    .video-wrapper video {
+        object-fit: contain;
+        background-color: #000;
+    }
+}
+
+/* Styles cho popup xác nhận kết nối */
+.confirm-connection-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.confirm-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+}
+
+.confirm-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.confirm-content p {
+    margin-bottom: 20px;
+}
+
+.confirm-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.confirm-buttons button {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.accept-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.accept-btn:hover {
+    background: var(--primary-hover);
+}
+
+.reject-btn {
+    background: #ff4444;
+    color: white;
+}
+
+.reject-btn:hover {
+    background: #ff3333;
+}
+
+/* Cập nhật style cho status badge */
+.status-badge {
+    font-size: 2.25em;
+    padding: 2px 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    min-width: 70px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .status-badge {
+        font-size: 2.1em;
+        padding: 1px 4px;
+        min-width: 56px;
+    }
+}
+
+/* Cập nhật style cho video container khi fullscreen */
+.video-wrapper.fullscreen {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 9999;
+    background: black;
+}
+
+.video-wrapper.fullscreen video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Điều chỉnh vị trí của local video khi remote video fullscreen */
+.video-wrapper.remote.fullscreen + .video-wrapper.local {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 180px;
+    height: 120px;
+    z-index: 10000;
+}
+
+/* Style cho online counter */
+.online-counter {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    font-size: 0.85em;
+    color: var(--text-color);
+}
+
+.online-counter i {
+    font-size: 0.8em;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+#onlineCount {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .online-counter {
+        padding: 4px 10px;
+        font-size: 0.8em;
+    }
+}
+
+/* Style cho emoji button và picker */
+.emoji-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: var(--light-text);
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emoji-button:hover {
+    color: var(--primary-color);
+}
+
+.emoji-picker {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    max-width: 320px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    margin-bottom: 5px;
+}
+
+.emoji-picker.hidden {
+    display: none;
+}
+
+.emoji-categories {
+    display: flex;
+    gap: 5px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--primary-light);
+}
+
+.emoji-category {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.emoji-category:hover,
+.emoji-category.active {
+    background: var(--primary-light);
+}
+
+.emoji-list {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 5px;
+    background: white;
+    border-radius: 5px;
+}
+
+.emoji-item {
+    font-size: 1.5em;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.emoji-item:hover {
+    background: var(--primary-light);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .emoji-picker {
+        max-width: 100%;
+    }
+
+    .emoji-list {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* Thêm style cho chat-input để đảm bảo vị trí tương đối */
+.chat-input {
+    position: relative;
+    flex-shrink: 0;
+    padding: 10px;
+    background: white;
+    border-top: 1px solid var(--primary-light);
+}
+
+/* Điều chỉnh chat container và input cho mobile */
+@media (max-width: 768px) {
+    .chat-container {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        min-height: 30vh; /* Tăng chiều cao tối thiểu */
+    }
+
+    .chat-messages {
+        flex: 1;
+        min-height: 150px; /* Đảm bảo có đủ không gian cho tin nhắn */
+        max-height: calc(50vh - 60px); /* Giới hạn chiều cao tin nhắn */
+    }
+
+    .chat-input.mobile-friendly {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 10px;
+        z-index: 1000;
+        border-top: 1px solid var(--primary-light);
+        margin-top: auto; /* Đẩy input xuống dưới */
+    }
+
+    /* Điều chỉnh khoảng cách bottom để tránh bàn phím ảo */
+    .chat-input.mobile-friendly {
+        padding-bottom: env(safe-area-inset-bottom, 10px);
+    }
+
+    /* Đảm bảo emoji picker hiển thị đúng trên mobile */
+    .emoji-picker {
+        bottom: 100%;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+}
+
+/* Thêm style cho main-content để cải thiện layout */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px); /* Trừ đi chiều cao của header */
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        height: auto;
+        min-height: calc(100vh - 50px);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Đảm bảo nội dung không bị che khuất bởi bàn phím ảo */
+    body.keyboard-open .main-content {
+        height: calc(100vh - 50px - var(--keyboard-height, 0px));
+    }
+}
+
+/* Thêm style cho smooth scrolling */
+* {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+} 
+
+/* Cấu trúc chat với sidebar quảng cáo */
+.chat-ad-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.ad-sidebar {
+    width: 160px;
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px;
+    background-color: #f8f9fa;
+    border-left: 1px solid #e9ecef;
+    overflow: hidden;
+}
+
+.ad-wrapper {
+    height: 600px;
+    width: 160px;
+    overflow: hidden;
+}
+
+/* Đáp ứng thiết bị di động */
+@media (max-width: 768px) {
+    .ad-sidebar {
+        display: none; /* Ẩn quảng cáo trên mobile */
+    }
+    
+    .chat-ad-container {
+        flex-direction: column;
+    }
+    
+    .chat-messages {
+        max-height: calc(100vh - 240px);
+    }
+}
+
+/* Add styling for ad containers if it doesn't exist already */
+.ad-container {
+    margin: 15px auto;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive adjustments for ads */
+@media (max-width: 768px) {
+    .ad-container {
+        padding: 5px;
+        margin: 10px auto;
+    }
+    
+    /* Make 728x90 and 468x60 banners responsive */
+    .ad-container iframe[width="728"],
+    .ad-container iframe[width="468"] {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Hide certain ads on very small screens */
+    body.small-screen .ad-container:not(.essential) {
+        display: none;
+    }
+}
+
+@media (max-width: 320px) {
+    /* For very small screens, adjust 300x250 banner */
+    .ad-container iframe[width="300"] {
+        transform: scale(0.9);
+        transform-origin: center;
+    }
+} 

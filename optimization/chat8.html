@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#6200EE">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Talk to Strangers! - Material Design</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="content-pages.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Roboto Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script type='text/javascript' src='//pl26519744.profitableratecpm.com/48/14/da/4814da49341d0cf678490b3e0e77e1e4.js'></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4151519079019358"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        /* Material Design styles */
+        :root {
+            --primary-color: #6200EE;
+            --primary-variant: #3700B3;
+            --secondary-color: #03DAC6;
+            --secondary-variant: #018786;
+            --background: #FFFFFF;
+            --surface: #FFFFFF;
+            --error: #B00020;
+            --on-primary: #FFFFFF;
+            --on-secondary: #000000;
+            --on-background: #000000;
+            --on-surface: #000000;
+            --on-error: #FFFFFF;
+            --border-radius: 4px;
+            --elevation-1: 0 2px 1px -1px rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 1px 3px 0 rgba(0,0,0,0.12);
+            --elevation-2: 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12);
+            --elevation-4: 0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+            --elevation-8: 0 5px 5px -3px rgba(0,0,0,0.2), 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: var(--on-background);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Material App Bar */
+        .header {
+            background-color: var(--primary-color);
+            color: var(--on-primary);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: var(--elevation-4);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .header-top {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-image {
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .logo-text {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.15px;
+        }
+        
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--on-primary);
+            font-size: 24px;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        
+        .menu-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .status-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 8px;
+        }
+        
+        .user-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.25px;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+        }
+        
+        .online-counter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            width: 100%;
+            margin-top: 16px;
+        }
+        
+        .nav-link {
+            color: var(--on-primary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.1px;
+            text-transform: uppercase;
+            transition: background-color 0.2s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link.active {
+            font-weight: 700;
+        }
+        
+        /* Main content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        /* Video container */
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .main-controls {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        /* Material Button */
+        .control-button, .next-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            height: 36px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            box-shadow: var(--elevation-1);
+            position: relative;
+            overflow: hidden;
+            gap: 8px;
+        }
+        
+        .control-button {
+            background-color: var(--primary-color);
+            color: var(--on-primary);
+        }
+        
+        .next-button {
+            background-color: var(--secondary-color);
+            color: var(--on-secondary);
+        }
+        
+        .control-button:hover, .next-button:hover {
+            box-shadow: var(--elevation-2);
+        }
+        
+        .control-button:active, .next-button:active {
+            box-shadow: var(--elevation-8);
+        }
+        
+        .status-badge {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: normal;
+            margin-left: 4px;
+        }
+        
+        .video-screens {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        @media (min-width: 768px) {
+            .video-screens {
+                flex-direction: row;
+            }
+            
+            .video-wrapper {
+                flex: 1;
+            }
+            
+            .header-top {
+                width: auto;
+            }
+            
+            .nav-links {
+                margin-top: 0;
+                margin-left: auto;
+                width: auto;
+            }
+        }
+        
+        .video-wrapper {
+            position: relative;
+            background-color: #000;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            box-shadow: var(--elevation-2);
+        }
+        
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px 16px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .video-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .local-controls, .remote-controls {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .control-btn:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Chat container */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--surface);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--elevation-1);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            min-height: 250px;
+        }
+        
+        .welcome-message {
+            background-color: #f5f5f5;
+            padding: 12px 16px;
+            border-radius: var(--border-radius);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .welcome-message i {
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+        
+        .chat-input {
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: white;
+            border-radius: 24px;
+            padding: 0 16px;
+            box-shadow: var(--elevation-1);
+        }
+        
+        .mobile-input {
+            flex: 1;
+            height: 48px;
+            border: none;
+            background: transparent;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+        }
+        
+        .mobile-input:focus {
+            outline: none;
+        }
+        
+        .emoji-button, .mobile-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: none;
+            border: none;
+            color: #757575;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .emoji-button i, .mobile-button i {
+            font-size: 20px;
+        }
+        
+        .emoji-button:hover, .mobile-button:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .emoji-picker {
+            position: absolute;
+            bottom: 76px;
+            left: 16px;
+            right: 16px;
+            max-width: 360px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--elevation-4);
+            padding: 16px;
+            z-index: 10;
+            display: none;
+        }
+        
+        .emoji-picker.show {
+            display: block;
+        }
+        
+        .emoji-categories {
+            display: flex;
+            overflow-x: auto;
+            gap: 8px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .emoji-category {
+            padding: 8px;
+            border: none;
+            background: none;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .emoji-category.active {
+            background-color: #f5f5f5;
+        }
+        
+        .emoji-list {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 16px;
+            background-color: var(--primary-color);
+            color: var(--on-primary);
+            padding: 16px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--elevation-1);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .footer-links a {
+            color: var(--on-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        /* Ripple effect for buttons */
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* Helpers */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mobile-optimized">
+        <header class="header">
+            <div class="header-top">
+                <div class="logo-wrapper">
+                    <img src="images/logo-omegle.png" alt="Omegle Logo" class="logo-image">
+                    <div class="logo-text">Talk to Strangers!</div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <i class="material-icons">menu</i>
+                </button>
+            </div>
+            <div class="status-container">
+                <div class="user-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+                <div class="online-counter">
+                    <i class="material-icons" style="font-size: 14px">people</i>
+                    <span id="onlineCount">0</span> online
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="safety.html" class="nav-link">Safety</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </nav>
+        </header>
+        
+        <main class="main-content">
+            <section class="video-container">
+                <div class="main-controls">
+                    <button id="autoConnectBtn" class="control-button">
+                        <i class="material-icons">sync</i>
+                        <span>Auto Connect</span>
+                        <span class="status-badge">Off</span>
+                    </button>
+                    <button id="nextButton" class="next-button">
+                        <i class="material-icons">shuffle</i>
+                        <span>Next Stranger</span>
+                    </button>
+                </div>
+
+                <div class="video-screens">
+                    <div class="video-wrapper local">
+                        <video id="localVideo" autoplay playsinline muted></video>
+                        <div class="video-overlay">
+                            <span class="video-label">You</span>
+                            <div class="local-controls">
+                                <button id="toggleVideo" class="control-btn" aria-label="Toggle video">
+                                    <i class="material-icons">videocam</i>
+                                </button>
+                                <button id="toggleAudio" class="control-btn" aria-label="Toggle audio">
+                                    <i class="material-icons">mic</i>
+                                </button>
+                                <button id="fullscreenLocal" class="control-btn" aria-label="Fullscreen">
+                                    <i class="material-icons">fullscreen</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-wrapper remote">
+                        <video id="remoteVideo" autoplay playsinline></video>
+                        <div class="video-overlay">
+                            <span class="video-label">Stranger</span>
+                            <div class="remote-controls">
+                                <button id="fullscreenRemote" class="control-btn" aria-label="Fullscreen">
+                                    <i class="material-icons">fullscreen</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="chat-container" id="chatContainer">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <i class="material-icons">waving_hand</i>
+                        <p>Welcome to Omegle! Say hi to start a conversation.</p>
+                    </div>
+                </div>
+                <div class="chat-input mobile-friendly">
+                    <div class="input-wrapper">
+                        <button id="emojiButton" class="emoji-button" aria-label="Insert emoji">
+                            <i class="material-icons">sentiment_satisfied_alt</i>
+                        </button>
+                        <input type="text" id="messageInput" placeholder="Type a message..." class="mobile-input">
+                        <button id="sendButton" class="mobile-button" aria-label="Send message">
+                            <i class="material-icons">send</i>
+                        </button>
+                    </div>
+                    <div id="emojiPicker" class="emoji-picker hidden">
+                        <div class="emoji-categories">
+                            <button class="emoji-category active" data-category="smileys">😊</button>
+                            <button class="emoji-category" data-category="gestures">👋</button>
+                            <button class="emoji-category" data-category="love">❤️</button>
+                            <button class="emoji-category" data-category="animals">🐶</button>
+                            <button class="emoji-category" data-category="food">🍔</button>
+                        </div>
+                        <div class="emoji-list"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="safety.html">Safety</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Talk to Strangers. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+    <!-- Material Design Ripple Effect -->
+    <script>
+        // Add ripple effect to buttons with Material Design
+        function createRipple(event) {
+            const button = event.currentTarget;
+            
+            const circle = document.createElement("span");
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+            
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+            circle.classList.add("ripple");
+            
+            const ripple = button.getElementsByClassName("ripple")[0];
+            
+            if (ripple) {
+                ripple.remove();
+            }
+            
+            button.appendChild(circle);
+        }
+
+        // Apply ripple to buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.control-button, .next-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', createRipple);
+            });
+            
+            // Toggle menu on mobile
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Animate online user count
+            const onlineCountElement = document.getElementById('onlineCount');
+            if (onlineCountElement) {
+                const randomUserCount = Math.floor(Math.random() * 300) + 500;
+                let count = 0;
+                const interval = setInterval(() => {
+                    count += Math.ceil(randomUserCount / 30);
+                    if (count >= randomUserCount) {
+                        count = randomUserCount;
+                        clearInterval(interval);
+                    }
+                    onlineCountElement.textContent = count.toLocaleString();
+                }, 50);
+            }
+        });
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KENLW8Z2M7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KENLW8Z2M7', {
+        'cookie_flags': 'SameSite=None;Secure',
+        'cookie_domain': 'none'
+      });
+    </script>
+</body>
+</html> 

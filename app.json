@@ -1,0 +1,32 @@
+{
+  "name": "Random Chat",
+  "description": "A random chat application for connecting strangers",
+  "repository": "https://github.com/papasgames-3d/talkstranger",
+  "keywords": ["node", "express", "websocket", "chat"],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "HEROKU_APP_NAME": {
+      "description": "The name of your Heroku app for ping functionality",
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "value": "true"
+    },
+    "NPM_CONFIG_PACKAGE_LOCK": {
+      "value": "false"
+    },
+    "NPM_CONFIG_CI": {
+      "value": "false"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  }
+}

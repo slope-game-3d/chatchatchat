@@ -1,0 +1,1 @@
+web: npm install && node --expose-gc server.js 

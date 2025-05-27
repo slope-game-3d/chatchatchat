@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#36393F">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Talk to Strangers! - Discord Style</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="content-pages.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script type='text/javascript' src='//pl26519744.profitableratecpm.com/48/14/da/4814da49341d0cf678490b3e0e77e1e4.js'></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4151519079019358"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        /* Discord-inspired design */
+        :root {
+            --discord-bg: #36393F;
+            --discord-dark: #2F3136;
+            --discord-darker: #202225;
+            --discord-light: #40444B;
+            --discord-accent: #5865F2;
+            --discord-green: #3BA55C;
+            --discord-text: #DCDDDE;
+            --discord-muted: #72767D;
+            --discord-link: #00AFF4;
+            --border-radius: 8px;
+            --shadow: 0 1px 0 rgba(4,4,5,0.2),0 1.5px 0 rgba(6,6,7,0.05),0 2px 0 rgba(4,4,5,0.05);
+        }
+        
+        body {
+            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--discord-bg);
+            color: var(--discord-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-height: 100vh;
+        }
+        
+        .header {
+            background-color: var(--discord-dark);
+            border-radius: var(--border-radius);
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+            flex-wrap: wrap;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-image {
+            height: 32px;
+            border-radius: 50%;
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .user-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--discord-muted);
+            font-size: 14px;
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background-color: var(--discord-green);
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .online-counter {
+            font-size: 14px;
+            color: var(--discord-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .nav-link {
+            color: var(--discord-muted);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--discord-text);
+            background-color: var(--discord-light);
+        }
+        
+        .nav-link.active {
+            color: white;
+            background-color: var(--discord-accent);
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .main-controls {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .control-button, .next-button {
+            background-color: var(--discord-light);
+            border: none;
+            color: var(--discord-text);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .control-button:hover, .next-button:hover {
+            background-color: var(--discord-accent);
+        }
+        
+        .next-button {
+            background-color: var(--discord-accent);
+        }
+        
+        .status-badge {
+            background-color: var(--discord-dark);
+            color: var(--discord-muted);
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+        
+        .video-wrapper {
+            flex: 1;
+            min-width: 300px;
+            height: 225px;
+            background-color: var(--discord-darker);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .video-label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--discord-text);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-left: 4px;
+        }
+        
+        .control-btn:hover {
+            background-color: var(--discord-light);
+        }
+        
+        .chat-container {
+            flex: 1;
+            display: flex;
+            background-color: var(--discord-dark);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            min-height: 0;
+        }
+        
+        .chat-ad-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--discord-light) var(--discord-dark);
+            min-height: 0;
+        }
+        
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-track {
+            background: var(--discord-dark);
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: var(--discord-light);
+            border-radius: 4px;
+            border: 2px solid var(--discord-dark);
+        }
+        
+        .welcome-message {
+            background-color: var(--discord-light);
+            padding: 12px 16px;
+            border-radius: var(--border-radius);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .welcome-message i {
+            font-size: 20px;
+            color: var(--discord-green);
+        }
+        
+        .chat-input {
+            padding: 16px;
+            background-color: var(--discord-dark);
+            border-top: 1px solid var(--discord-darker);
+        }
+        
+        .input-wrapper {
+            background-color: var(--discord-light);
+            border-radius: var(--border-radius);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .mobile-input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--discord-text);
+            font-size: 15px;
+            font-family: inherit;
+        }
+        
+        .mobile-input:focus {
+            outline: none;
+        }
+        
+        .mobile-input::placeholder {
+            color: var(--discord-muted);
+        }
+        
+        .emoji-button, .mobile-button {
+            background: none;
+            border: none;
+            color: var(--discord-muted);
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            transition: color 0.2s;
+        }
+        
+        .emoji-button:hover, .mobile-button:hover {
+            color: var(--discord-text);
+        }
+        
+        .emoji-picker {
+            position: absolute;
+            bottom: 70px;
+            right: 16px;
+            background-color: var(--discord-darker);
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 0 1px rgba(4,4,5,0.15),0 8px 16px rgba(0,0,0,0.24);
+            padding: 8px;
+            z-index: 10;
+        }
+        
+        .emoji-categories {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .emoji-category {
+            background: none;
+            border: none;
+            padding: 6px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .emoji-category.active {
+            background-color: var(--discord-light);
+        }
+        
+        .emoji-list {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+        
+        .ad-sidebar {
+            width: 160px;
+            border-left: 1px solid var(--discord-darker);
+            padding: 16px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer {
+            margin-top: 16px;
+            background-color: var(--discord-dark);
+            padding: 16px;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            color: var(--discord-muted);
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: var(--discord-link);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 8px;
+                height: auto;
+                max-height: none;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .nav-links {
+                margin-top: 8px;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+            
+            .video-container {
+                flex-direction: column;
+            }
+            
+            .video-wrapper {
+                width: 100%;
+            }
+            
+            .chat-container {
+                flex-direction: column;
+            }
+            
+            .ad-sidebar {
+                width: 100%;
+                height: auto;
+                border-left: none;
+                border-top: 1px solid var(--discord-darker);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mobile-optimized">
+        <div class="header">
+            <div class="header-left">
+                <img src="images/logo-omegle.png" alt="Omegle Logo" class="logo-image">
+                <div class="logo-text">Talk to Strangers!</div>
+                <div class="user-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+            </div>
+            <div class="online-counter">
+                <i class="fas fa-circle" style="color: var(--discord-green)"></i>
+                <span id="onlineCount">0</span> users online
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="safety.html" class="nav-link">Safety</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="video-container">
+                <div class="main-controls">
+                    <button id="autoConnectBtn" class="control-button">
+                        <i class="fas fa-sync"></i> Auto Connect
+                        <span class="status-badge">Off</span>
+                    </button>
+                    <button id="nextButton" class="next-button">
+                        <i class="fas fa-random"></i> Next Stranger
+                    </button>
+                </div>
+
+                <div class="video-wrapper local">
+                    <video id="localVideo" autoplay playsinline muted></video>
+                    <div class="video-overlay">
+                        <span class="video-label">You</span>
+                        <div class="local-controls">
+                            <button id="toggleVideo" class="control-btn">
+                                <i class="fas fa-video"></i>
+                            </button>
+                            <button id="toggleAudio" class="control-btn">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button id="fullscreenLocal" class="control-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-wrapper remote">
+                    <video id="remoteVideo" autoplay playsinline></video>
+                    <div class="video-overlay">
+                        <span class="video-label">Stranger</span>
+                        <div class="remote-controls">
+                            <button id="fullscreenRemote" class="control-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-ad-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="welcome-message">
+                            <i class="fas fa-hand-wave"></i>
+                            <p>Welcome to Omegle! Say hi to start a conversation.</p>
+                        </div>
+                    </div>
+                    <div class="chat-input mobile-friendly">
+                        <div class="input-wrapper">
+                            <button id="emojiButton" class="emoji-button">
+                                <i class="fas fa-smile"></i>
+                            </button>
+                            <input type="text" id="messageInput" placeholder="Type a message..." class="mobile-input">
+                            <button id="sendButton" class="mobile-button">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div id="emojiPicker" class="emoji-picker hidden">
+                            <div class="emoji-categories">
+                                <button class="emoji-category active" data-category="smileys">😊</button>
+                                <button class="emoji-category" data-category="gestures">👋</button>
+                                <button class="emoji-category" data-category="love">❤️</button>
+                                <button class="emoji-category" data-category="animals">🐶</button>
+                                <button class="emoji-category" data-category="food">🍔</button>
+                            </div>
+                            <div class="emoji-list"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ad-sidebar">
+                    <div class="ad-wrapper">
+                        <!-- Ad content here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="safety.html">Safety</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Talk to Strangers. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KENLW8Z2M7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KENLW8Z2M7', {
+        'cookie_flags': 'SameSite=None;Secure',
+        'cookie_domain': 'none'
+      });
+    </script>
+</body>
+</html> 

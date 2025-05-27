@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#f9f9f9">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Talk to Strangers! - Zen Minimal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="content-pages.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script type='text/javascript' src='//pl26519744.profitableratecpm.com/48/14/da/4814da49341d0cf678490b3e0e77e1e4.js'></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4151519079019358"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        /* Zen Minimal Theme */
+        :root {
+            --zen-bg: #f9f9f9;
+            --zen-text: #333333;
+            --zen-primary: #9ca3af;
+            --zen-secondary: #e5e7eb;
+            --zen-accent: #d1d5db;
+            --zen-dark: #111827;
+            --zen-focus: #374151;
+            --zen-font: 'Noto Sans JP', sans-serif;
+            --zen-serif: 'Noto Serif JP', serif;
+            --zen-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: var(--zen-font);
+            background-color: var(--zen-bg);
+            color: var(--zen-text);
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        /* Header */
+        .header {
+            margin-bottom: 64px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .logo-image {
+            height: 40px;
+            opacity: 0.8;
+        }
+        
+        .logo-text {
+            font-family: var(--zen-serif);
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--zen-dark);
+        }
+        
+        .user-status {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--zen-primary);
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background-color: var(--zen-dark);
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        
+        .online-counter {
+            font-size: 14px;
+            color: var(--zen-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: absolute;
+            top: 40px;
+            right: 24px;
+        }
+        
+        .nav-links {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            border-top: 1px solid var(--zen-secondary);
+            padding-top: 16px;
+        }
+        
+        .nav-link {
+            color: var(--zen-text);
+            text-decoration: none;
+            font-size: 14px;
+            position: relative;
+            transition: var(--zen-transition);
+            padding: 4px 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--zen-dark);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--zen-dark);
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        /* Main content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
+        
+        /* Section styles */
+        .section {
+            margin-bottom: 64px;
+        }
+        
+        .section-heading {
+            font-family: var(--zen-serif);
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--zen-dark);
+            margin-bottom: 32px;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Video container */
+        .video-container {
+            margin-bottom: 64px;
+        }
+        
+        .main-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .control-button, .next-button {
+            background-color: var(--zen-bg);
+            color: var(--zen-text);
+            border: 1px solid var(--zen-secondary);
+            padding: 12px 24px;
+            font-family: var(--zen-font);
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--zen-transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .control-button:hover, .next-button:hover {
+            background-color: var(--zen-secondary);
+            color: var(--zen-dark);
+        }
+        
+        .next-button {
+            background-color: var(--zen-dark);
+            color: var(--zen-bg);
+            border: none;
+        }
+        
+        .next-button:hover {
+            background-color: var(--zen-focus);
+            color: var(--zen-bg);
+        }
+        
+        .status-badge {
+            font-size: 12px;
+            padding: 2px 8px;
+            background-color: var(--zen-secondary);
+            color: var(--zen-text);
+            border-radius: 2px;
+        }
+        
+        .video-screens {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        
+        @media (min-width: 768px) {
+            .video-screens {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .video-wrapper {
+            position: relative;
+            background-color: var(--zen-dark);
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+        }
+        
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .video-label {
+            color: white;
+            font-size: 14px;
+        }
+        
+        .local-controls, .remote-controls {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .control-btn {
+            width: 32px;
+            height: 32px;
+            background-color: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--zen-transition);
+            font-size: 12px;
+        }
+        
+        .control-btn:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+        
+        /* Chat container */
+        .chat-container {
+            background-color: var(--zen-bg);
+            border: 1px solid var(--zen-secondary);
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+        
+        .welcome-message {
+            padding: 16px;
+            margin-bottom: 16px;
+            max-width: 70%;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--zen-text);
+            background-color: var(--zen-secondary);
+        }
+        
+        .chat-input {
+            padding: 16px;
+            border-top: 1px solid var(--zen-secondary);
+        }
+        
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--zen-secondary);
+            padding: 8px 16px;
+        }
+        
+        .mobile-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 8px 0;
+            font-family: var(--zen-font);
+            font-size: 14px;
+            color: var(--zen-text);
+        }
+        
+        .mobile-input:focus {
+            outline: none;
+        }
+        
+        .emoji-button, .mobile-button {
+            background: none;
+            border: none;
+            color: var(--zen-primary);
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--zen-transition);
+        }
+        
+        .emoji-button:hover, .mobile-button:hover {
+            color: var(--zen-dark);
+        }
+        
+        .emoji-picker {
+            position: absolute;
+            bottom: 80px;
+            left: 16px;
+            width: 300px;
+            background-color: var(--zen-bg);
+            border: 1px solid var(--zen-secondary);
+            padding: 16px;
+            z-index: 100;
+        }
+        
+        .emoji-categories {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--zen-secondary);
+        }
+        
+        .emoji-category {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--zen-transition);
+        }
+        
+        .emoji-category.active, .emoji-category:hover {
+            background-color: var(--zen-secondary);
+        }
+        
+        .emoji-list {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 96px;
+            padding-top: 32px;
+            border-top: 1px solid var(--zen-secondary);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links a {
+            color: var(--zen-primary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--zen-transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--zen-dark);
+        }
+        
+        .copyright {
+            color: var(--zen-primary);
+            font-size: 12px;
+            margin-top: 16px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Zen decorative element */
+        .zen-circle {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 120px;
+            height: 120px;
+            border: 1px solid var(--zen-secondary);
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: -1;
+        }
+        
+        .zen-circle::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            border: 1px solid var(--zen-secondary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .zen-circle::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: var(--zen-secondary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="zen-circle"></div>
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                <img src="images/logo-omegle.png" alt="Omegle Logo" class="logo-image">
+                <div class="logo-text">Talk to Strangers</div>
+                <div class="user-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">connecting...</span>
+                </div>
+            </div>
+            <div class="online-counter">
+                <i class="fas fa-users"></i>
+                <span id="onlineCount">0</span> online
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="safety.html" class="nav-link">Safety</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </nav>
+        </header>
+        
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-heading">Video Connection</h2>
+                
+                <div class="video-container">
+                    <div class="main-controls">
+                        <button id="autoConnectBtn" class="control-button">
+                            <i class="fas fa-sync-alt"></i> Auto Connect
+                            <span class="status-badge">Off</span>
+                        </button>
+                        <button id="nextButton" class="next-button">
+                            <i class="fas fa-random"></i> Next Stranger
+                        </button>
+                    </div>
+
+                    <div class="video-screens">
+                        <div class="video-wrapper local">
+                            <video id="localVideo" autoplay playsinline muted></video>
+                            <div class="video-overlay">
+                                <span class="video-label">You</span>
+                                <div class="local-controls">
+                                    <button id="toggleVideo" class="control-btn">
+                                        <i class="fas fa-video"></i>
+                                    </button>
+                                    <button id="toggleAudio" class="control-btn">
+                                        <i class="fas fa-microphone"></i>
+                                    </button>
+                                    <button id="fullscreenLocal" class="control-btn">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="video-wrapper remote">
+                            <video id="remoteVideo" autoplay playsinline></video>
+                            <div class="video-overlay">
+                                <span class="video-label">Stranger</span>
+                                <div class="remote-controls">
+                                    <button id="fullscreenRemote" class="control-btn">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="section-heading">Conversation</h2>
+                
+                <div class="chat-container" id="chatContainer">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="welcome-message">
+                            <p>Welcome. Begin your conversation with a simple greeting.</p>
+                        </div>
+                    </div>
+                    <div class="chat-input mobile-friendly">
+                        <div class="input-wrapper">
+                            <button id="emojiButton" class="emoji-button">
+                                <i class="fas fa-smile"></i>
+                            </button>
+                            <input type="text" id="messageInput" placeholder="Type a message..." class="mobile-input">
+                            <button id="sendButton" class="mobile-button">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div id="emojiPicker" class="emoji-picker hidden">
+                            <div class="emoji-categories">
+                                <button class="emoji-category active" data-category="smileys">😊</button>
+                                <button class="emoji-category" data-category="gestures">👋</button>
+                                <button class="emoji-category" data-category="love">❤️</button>
+                                <button class="emoji-category" data-category="animals">🐶</button>
+                                <button class="emoji-category" data-category="food">🍔</button>
+                            </div>
+                            <div class="emoji-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="safety.html">Safety</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Talk to Strangers. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+    <!-- Zen theme script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate online user count in a calm, gradual way
+            const onlineCountElement = document.getElementById('onlineCount');
+            if (onlineCountElement) {
+                const randomUserCount = Math.floor(Math.random() * 300) + 500;
+                let count = 0;
+                const interval = setInterval(() => {
+                    count += 5;
+                    if (count >= randomUserCount) {
+                        count = randomUserCount;
+                        clearInterval(interval);
+                    }
+                    onlineCountElement.textContent = count.toLocaleString();
+                }, 80);
+            }
+        });
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KENLW8Z2M7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KENLW8Z2M7', {
+        'cookie_flags': 'SameSite=None;Secure',
+        'cookie_domain': 'none'
+      });
+    </script>
+</body>
+</html> 

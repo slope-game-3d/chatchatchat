@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#F8B195">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Talk to Strangers! - Retro Theme</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="content-pages.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Montserrat+Subrayada&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script type='text/javascript' src='//pl26519744.profitableratecpm.com/48/14/da/4814da49341d0cf678490b3e0e77e1e4.js'></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4151519079019358"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        /* Retro/Vintage design theme */
+        :root {
+            --retro-bg: #F9F4EF;
+            --retro-primary: #F8B195;
+            --retro-secondary: #F67280;
+            --retro-accent: #C06C84;
+            --retro-dark: #6C5B7B;
+            --retro-darker: #355C7D;
+            --retro-text: #534741;
+            --retro-light-text: #8E7F7C;
+            --retro-border-radius: 0px;
+            --retro-font: 'Libre Baskerville', serif;
+            --retro-heading-font: 'Montserrat Subrayada', sans-serif;
+            --retro-accent-font: 'Pacifico', cursive;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: var(--retro-font);
+            background-color: var(--retro-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e0d6cc' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+            color: var(--retro-text);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Retro Header */
+        .header {
+            background-color: var(--retro-primary);
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.1) 10px, rgba(255,255,255,.1) 20px);
+            border: 4px solid var(--retro-text);
+            border-radius: var(--retro-border-radius);
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-image {
+            height: 50px;
+            border: 3px solid var(--retro-text);
+            border-radius: 50%;
+            background-color: white;
+            padding: 5px;
+        }
+        
+        .logo-text {
+            font-family: var(--retro-accent-font);
+            font-size: 28px;
+            color: var(--retro-text);
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+        }
+        
+        .user-status {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-style: italic;
+            color: var(--retro-text);
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            background-color: var(--retro-dark);
+            border-radius: 50%;
+            border: 1px solid var(--retro-text);
+        }
+        
+        .online-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--retro-secondary);
+            color: white;
+            padding: 5px 15px;
+            border: 2px solid var(--retro-text);
+            border-radius: var(--retro-border-radius);
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-links {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-link {
+            color: var(--retro-text);
+            text-decoration: none;
+            font-weight: bold;
+            background-color: var(--retro-bg);
+            padding: 5px 15px;
+            border: 2px solid var(--retro-text);
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--retro-secondary);
+            color: white;
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Main content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Section headings */
+        .section-heading {
+            font-family: var(--retro-heading-font);
+            font-size: 24px;
+            color: var(--retro-dark);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-heading::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='12' viewBox='0 0 40 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6.172L6.172 0h5.656L0 11.828V6.172zm40 5.656L28.172 0h5.656L40 6.172v5.656zM6.172 12l12-12h3.656l12 12h-5.656L20 3.828 11.828 12H6.172zm12 0L20 10.172 21.828 12h-3.656z' fill='%236c5b7b' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+        }
+        
+        /* Video container */
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .main-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .control-button, .next-button {
+            background-color: var(--retro-bg);
+            color: var(--retro-text);
+            border: 3px solid var(--retro-text);
+            border-radius: var(--retro-border-radius);
+            padding: 10px 20px;
+            font-family: var(--retro-font);
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .control-button:hover, .next-button:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        .control-button:active, .next-button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        .next-button {
+            background-color: var(--retro-secondary);
+            color: white;
+        }
+        
+        .status-badge {
+            background-color: var(--retro-dark);
+            color: white;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: var(--retro-border-radius);
+        }
+        
+        .video-screens {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .video-screens {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .video-wrapper {
+            position: relative;
+            background-color: var(--retro-primary);
+            border: 4px solid var(--retro-text);
+            border-radius: var(--retro-border-radius);
+            overflow: hidden;
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+            aspect-ratio: 4 / 3;
+        }
+        
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(3px);
+            border-top: 4px solid var(--retro-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .video-label {
+            font-weight: bold;
+            color: var(--retro-text);
+            font-size: 16px;
+        }
+        
+        .local-controls, .remote-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .control-btn {
+            width: 36px;
+            height: 36px;
+            background-color: var(--retro-bg);
+            border: 2px solid var(--retro-text);
+            color: var(--retro-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        .control-btn:hover {
+            background-color: var(--retro-primary);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        .control-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Chat container */
+        .chat-container {
+            background-color: white;
+            border: 4px solid var(--retro-text);
+            border-radius: var(--retro-border-radius);
+            overflow: hidden;
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            min-height: 400px;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            min-height: 300px;
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c06c84' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .welcome-message {
+            background-color: var(--retro-secondary);
+            color: white;
+            padding: 15px 20px;
+            border: 2px solid var(--retro-text);
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .welcome-message i {
+            font-size: 24px;
+            color: var(--retro-bg);
+        }
+        
+        .welcome-message::after {
+            content: "";
+            position: absolute;
+            left: 20px;
+            bottom: -12px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 12px solid var(--retro-text);
+        }
+        
+        .chat-input {
+            padding: 15px 20px;
+            background-color: var(--retro-primary);
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.1) 10px, rgba(255,255,255,.1) 20px);
+            border-top: 4px solid var(--retro-text);
+        }
+        
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: white;
+            border: 3px solid var(--retro-text);
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+            padding: 8px 15px;
+        }
+        
+        .mobile-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 5px 0;
+            font-family: var(--retro-font);
+            font-size: 16px;
+            color: var(--retro-text);
+        }
+        
+        .mobile-input:focus {
+            outline: none;
+        }
+        
+        .emoji-button, .mobile-button {
+            background: none;
+            border: none;
+            color: var(--retro-dark);
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .emoji-button:hover, .mobile-button:hover {
+            color: var(--retro-secondary);
+            transform: scale(1.2);
+        }
+        
+        .emoji-picker {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            width: 300px;
+            background-color: white;
+            border: 4px solid var(--retro-text);
+            border-radius: var(--retro-border-radius);
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            z-index: 100;
+        }
+        
+        .emoji-categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--retro-primary);
+        }
+        
+        .emoji-category {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--retro-bg);
+            border: 2px solid var(--retro-text);
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .emoji-category.active {
+            background-color: var(--retro-primary);
+            transform: translate(-2px, -2px);
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        .emoji-list {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            background-color: var(--retro-primary);
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.1) 10px, rgba(255,255,255,.1) 20px);
+            border: 4px solid var(--retro-text);
+            border-radius: var(--retro-border-radius);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: var(--retro-text);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--retro-dark);
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            font-style: italic;
+            color: var(--retro-text);
+            font-size: 14px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Retro animation for online counter */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .status-indicator {
+            animation: blink 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mobile-optimized">
+        <header class="header">
+            <div class="header-left">
+                <img src="images/logo-omegle.png" alt="Omegle Logo" class="logo-image">
+                <div class="logo-text">Talk to Strangers!</div>
+                <div class="user-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+            </div>
+            <div class="online-counter">
+                <i class="fas fa-users"></i>
+                <span id="onlineCount">0</span> online
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="safety.html" class="nav-link">Safety</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </nav>
+        </header>
+        
+        <main class="main-content">
+            <h2 class="section-heading">Video Chat</h2>
+            
+            <section class="video-container">
+                <div class="main-controls">
+                    <button id="autoConnectBtn" class="control-button">
+                        <i class="fas fa-sync-alt"></i> Auto Connect
+                        <span class="status-badge">Off</span>
+                    </button>
+                    <button id="nextButton" class="next-button">
+                        <i class="fas fa-random"></i> Next Stranger
+                    </button>
+                </div>
+
+                <div class="video-screens">
+                    <div class="video-wrapper local">
+                        <video id="localVideo" autoplay playsinline muted></video>
+                        <div class="video-overlay">
+                            <span class="video-label">You</span>
+                            <div class="local-controls">
+                                <button id="toggleVideo" class="control-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                                <button id="toggleAudio" class="control-btn">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
+                                <button id="fullscreenLocal" class="control-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-wrapper remote">
+                        <video id="remoteVideo" autoplay playsinline></video>
+                        <div class="video-overlay">
+                            <span class="video-label">Stranger</span>
+                            <div class="remote-controls">
+                                <button id="fullscreenRemote" class="control-btn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <h2 class="section-heading">Text Chat</h2>
+            
+            <section class="chat-container" id="chatContainer">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <i class="fas fa-comment-dots"></i>
+                        <p>Welcome to Omegle! Say hi to start a conversation.</p>
+                    </div>
+                </div>
+                <div class="chat-input mobile-friendly">
+                    <div class="input-wrapper">
+                        <button id="emojiButton" class="emoji-button">
+                            <i class="fas fa-smile"></i>
+                        </button>
+                        <input type="text" id="messageInput" placeholder="Type a message..." class="mobile-input">
+                        <button id="sendButton" class="mobile-button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div id="emojiPicker" class="emoji-picker hidden">
+                        <div class="emoji-categories">
+                            <button class="emoji-category active" data-category="smileys">😊</button>
+                            <button class="emoji-category" data-category="gestures">👋</button>
+                            <button class="emoji-category" data-category="love">❤️</button>
+                            <button class="emoji-category" data-category="animals">🐶</button>
+                            <button class="emoji-category" data-category="food">🍔</button>
+                        </div>
+                        <div class="emoji-list"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="safety.html">Safety</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Talk to Strangers. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+    <!-- Retro animation script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate online user count in a retro way
+            const onlineCountElement = document.getElementById('onlineCount');
+            if (onlineCountElement) {
+                const randomUserCount = Math.floor(Math.random() * 300) + 500;
+                let count = 0;
+                const interval = setInterval(() => {
+                    count += 10;
+                    if (count >= randomUserCount) {
+                        count = randomUserCount;
+                        clearInterval(interval);
+                    }
+                    onlineCountElement.textContent = count.toLocaleString();
+                }, 100);
+            }
+        });
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KENLW8Z2M7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-KENLW8Z2M7', {
+        'cookie_flags': 'SameSite=None;Secure',
+        'cookie_domain': 'none'
+      });
+    </script>
+</body>
+</html> 
